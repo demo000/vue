@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div class="loadData">
+    <a @click="getData">加载数据</a>
+</div>
+<table class="personList">
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>薪资</th>
+    </tr>
+    <tr v-for="(person, index) in personList">
+        <td >{{person.id}}</td>
+        <td >{{person.name}}</td>
+        <td >{{person.address}}</td>
+    </tr>
+</table>
+<ul id="example-2">
+    <li v-for="(item, index) in items">
+        {{ parentMessage }} - {{ index }} - {{ item.message }}
+    </li>
+</ul>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            parentMessage: 'Parent',
+            items: [
+                { message: 'Foo' },
+                { message: 'Bar' }
+            ]
+        }
+    })
+    var personTable = new Vue({
+        el: '.personList',
+        data: {
+            personList:[{'id':1,'name':'张三','address':'广州'}]
+        }
+    })
+    var loadData=new Vue({
+        el:'.loadData',
+        methods:{
+            getData:function(){
+                $.post("/person/getAll",function(res){
+                    if(res.code==200){
+                        personTable.personList=res.data
+                    }
+                });
+
+            }
+        }
+    });
+
+
+</script>
+</html>

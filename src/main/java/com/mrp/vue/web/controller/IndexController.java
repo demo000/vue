@@ -19,4 +19,9 @@ public class IndexController extends BaseController {
         return "/index";
     }
 
+    @RequestMapping("/person/page1")
+    public String page1(){
+        return "/person/page1";
+    }
+
 }

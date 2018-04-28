@@ -37,4 +37,8 @@ public class PersonController extends BaseController {
         }
 
     }
+    @PostMapping("/getAll")
+    public Result getAll(){
+        return success(personService.getAll());
+    }
 }

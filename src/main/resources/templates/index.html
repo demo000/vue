@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>用户列表</title>
+    <link href="/css/main.css" rel="stylesheet" />
+</head>
+<body>
+<h1 th:text="${title}">Hello, Spring Boot!</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>薪资</th>
+    </tr>
+    <tr th:each="person : ${personList}">
+        <td th:text="${person.id}">0</td>
+        <td th:text="${person.name}">zhansan</td>
+        <td th:text="${person.address}">广州</td>
+    </tr>
+</table>
+</body>
+</html>

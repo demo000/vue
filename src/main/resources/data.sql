@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50710
+Source Server Version : 50525
 Source Host           : localhost:3306
 Source Database       : elastic
 
 Target Server Type    : MYSQL
-Target Server Version : 50710
+Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2018-04-27 15:04:59
+Date: 2018-01-06 01:22:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>用户列表</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-
-<div class="loadData">
+<!--<div class="loadData">
     <a @click="getData">加载数据</a>
-</div>
+</div>-->
 <table class="personList">
     <tr>
         <th>ID</th>
@@ -18,8 +17,8 @@
     </tr>
     <tr v-for="(person, index) in personList">
         <td >{{person.id}}</td>
-        <td >{{person.name}}</td>
-        <td >{{person.address}}</td>
+        <td v-on:click="showName">{{person.name}}</td>
+        <td>{{person.address}}</td>
     </tr>
 </table>
 <ul id="example-2">
@@ -35,24 +34,30 @@
         data: {
             parentMessage: 'Parent',
             items: [
-                { message: 'Foo' },
-                { message: 'Bar' }
+                {message: 'Foo'},
+                {message: 'Bar'}
             ]
         }
     })
     var personTable = new Vue({
         el: '.personList',
         data: {
-            personList:[{'id':1,'name':'张三','address':'广州'}]
+            personList: [{'id': 1, 'name': '张三', 'address': '广州'}]
+        },
+        methods: {
+            showName: function () {
+                var $this = $(this);
+                console.log($this)
+            }
         }
     })
-    var loadData=new Vue({
-        el:'.loadData',
-        methods:{
-            getData:function(){
-                $.post("/person/getAll",function(res){
-                    if(res.code==200){
-                        personTable.personList=res.data
+    var loadData = new Vue({
+        el: '.loadData',
+        methods: {
+            getData: function () {
+                $.post("/person/getAll", function (res) {
+                    if (res.code == 200) {
+                        personTable.personList = res.data
                     }
                 });
 
@@ -60,6 +65,14 @@
         }
     });
 
-
+</script>
+<script>
+    $(function () {
+        $.post("/person/getAll", function (res) {
+            if (res.code == 200) {
+                personTable.personList = res.data
+            }
+        });
+    })
 </script>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todolist</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="div1">
+    追加的内容<input v-model="inputVal"/>
+    <button @click="handlePush">追加List</button>
+    <ul >
+       <todo-item v-for="(item ,index) of list" :key="index" :content="item"></todo-item>
+    </ul>
+</div>
+<script>
+    //全局组件
+   /* Vue.component('todo-item',{
+        template:'<li>item</li>'
+    })*/
+   //局部组件
+   var todoItem={
+       props:['content'],
+       template:'<li @click="showLi">{{content}}</li>',
+       methods:{
+           showLi:function(){
+              console.log(this)
+           }
+       }
+   }
+    new Vue({
+        el: "#div1",
+        components:{
+            'todo-item':todoItem
+        },
+        data: {
+            inputVal: '',
+            list: []
+        }, methods: {
+            handlePush: function () {
+                if (this.inputVal){
+                    this.list.push(this.inputVal);
+                    this.inputVal=''
+                }
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

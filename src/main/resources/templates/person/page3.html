@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="div1">
+    <div v-if="show"> {{msg}}</div>
+    <button @click="toggleDiv">显示或者隐藏</button>
+</div>
+<div id="div2">
+    <div v-show="show"> {{msg}}</div>
+    <button @click="toggleDiv">显示或者隐藏</button>
+    <ul v-for="item of list">
+        <li>{{item}}</li>
+    </ul>
+    <hr/>
+    <ul v-for="(item,index) of list" :key="index">
+        <li>{{item}}</li>
+    </ul>
+</div>
+<script>
+   var div1 = new Vue({
+        el:"#div1",
+        data:{
+            msg:"Hello World",
+            show:true,
+        },
+        methods:{
+            toggleDiv:function(){
+                this.show=!this.show;
+            }
+        }
+    });
+   var div2 = new Vue({
+        el:"#div2",
+        data:{
+            msg:"Hello World",
+            show:true,
+            list:['h','l','l']
+        },
+        methods:{
+            toggleDiv:function(){
+                this.show=!this.show;
+            }
+        }
+    })
+</script>
+</body>
+</html>

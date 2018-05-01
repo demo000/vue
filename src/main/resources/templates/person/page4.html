@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todolist</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="div1">
+    追加的内容<input v-model="inputVal"/>
+    <button @click="handlePush">追加List</button>
+    <ul v-for="(item,index) of list" :key="index">
+        <li>{{item}}</li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el: "#div1",
+        data: {
+            inputVal: '',
+            list: []
+        }, methods: {
+            handlePush: function () {
+                if (this.inputVal){
+                    this.list.push(this.inputVal);
+                    this.inputVal=''
+                }
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

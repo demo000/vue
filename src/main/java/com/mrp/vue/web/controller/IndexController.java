@@ -4,6 +4,7 @@ import com.mrp.vue.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,9 +20,9 @@ public class IndexController extends BaseController {
         return "/index";
     }
 
-    @RequestMapping("/person/page1")
-    public String page1(){
-        return "/person/page1";
+    @RequestMapping("/person/{page}")
+    public String page(@PathVariable String page){
+        return "/person/"+page;
     }
 
 }

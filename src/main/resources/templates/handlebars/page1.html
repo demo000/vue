@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>用户列表</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/handlebars-v4.0.12.js"></script>
+    <script id="personTemp" type="text/x-handlebars-template">
+        <div>姓名:{{name}}</div>
+        <div>年龄:{{age}}</div>
+        <div>地址:{{addr}}</div>
+    </script>
+    <script id="personListTemp" type="text/x-handlebars-template">
+        {{#each this}}
+        <div>
+            <div>姓名:{{name}}</div>
+            <div>年龄:{{age}}</div>
+            <div>地址:{{addr}}</div>
+        </div>
+        {{/each}}
+    </script>
+</head>
+<body>
+<div id="personDiv">
+</div>
+<hr/>
+<div id="list"></div>
+</body>
+<script>
+    $(function () {
+        var person = {
+            name: '张三',
+            age: 12,
+            addr: '广州'
+        }
+        var source = $("#personTemp").html();
+        var template = Handlebars.compile(source);
+        var f = template(person)
+        $("#personDiv").html(f)
+
+    })
+
+    $(function () {
+        var list = [
+            {
+                name: '张三',
+                age: 12,
+                addr: '广州'
+            },
+            {
+                name: '李四',
+                age: 12,
+                addr: '广州'
+            }
+        ];
+        var source = $("#personListTemp").html();
+        var template = Handlebars.compile(source);
+        var f = template(list)
+        $("#list").html(f)
+
+    })
+</script>
+
+</html>
